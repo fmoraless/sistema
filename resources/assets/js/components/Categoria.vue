@@ -206,6 +206,12 @@
 
 <script>
     export default {
+        data(){
+            return{
+                nombre: '',
+                descripcion: ''
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         }
