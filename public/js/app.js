@@ -47865,6 +47865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            categoria_id: 0,
             nombre: '',
             descripcion: '',
             arrayCategoria: [],
@@ -47895,6 +47896,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/categoria/registrar', {
                 'nombre': this.nombre,
                 'descripcion': this.descripcion
+            }).then(function (response) {
+                me.cerrarModal();
+                me.listarCategoria();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        actualizarCategoria: function actualizarCategoria() {
+            if (this.validarCategoria()) {
+                return;
+            }
+
+            var me = this;
+
+            axios.put('/categoria/actualizar', {
+                'nombre': this.nombre,
+                'descripcion': this.descripcion,
+                'id': this.categoria_id
             }).then(function (response) {
                 me.cerrarModal();
                 me.listarCategoria();
@@ -47935,7 +47954,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     break;
                                 }
                             case 'actualizar':
-                                {}
+                                {
+                                    //console.log(data);
+                                    var me = this;
+                                    me.modal = 1;
+                                    me.tituloModal = 'Actualizar categoría';
+                                    me.tipoAccion = 2;
+                                    me.categoria_id = data['id'];
+                                    me.nombre = data['nombre'];
+                                    me.descripcion = data['descripcion'];
+                                    break;
+                                }
                         }
                     }
             }
@@ -48245,7 +48274,12 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: { type: "button" }
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.actualizarCategoria()
+                          }
+                        }
                       },
                       [_vm._v("Actualizar")]
                     )
