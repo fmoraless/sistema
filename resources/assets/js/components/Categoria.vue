@@ -257,7 +257,7 @@
             })
 
             swalWithBootstrapButtons({
-            title: '¿Está seguro de desactivar esta categoría?',
+            title: '¿Activar esta categoría?',
             
             type: 'warning',
             showCancelButton: true,
