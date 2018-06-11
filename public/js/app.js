@@ -47952,7 +47952,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
 
             swalWithBootstrapButtons({
-                title: '¿Está seguro de desactivar esta categoría?',
+                title: '¿Activar esta categoría?',
 
                 type: 'warning',
                 showCancelButton: true,
